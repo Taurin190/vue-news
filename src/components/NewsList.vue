@@ -20,8 +20,13 @@ export default {
     props: {
         title: String,
         newsList: Array
+    },
+    computed: {
+        newsObjects : function() {
+
+        }
     }
-}
+};
 </script>
 <style>
 ul {

@@ -14,8 +14,8 @@ export default {
   },
   data() {
       return {
-          newsIds: []
-        //   newsList: []
+          newsIds: [],
+          newsList: []
       }
   },
   mounted () {
@@ -23,35 +23,36 @@ export default {
       .get('https://hacker-news.firebaseio.com/v0/topstories.json')
       .then(response => (this.newsIds = response));
   },
-  computed: {
-      newsList() {
-          var list = [];
-          var count = 0;
-          if (this.newsIds.length == 0) return list;
-          for (var id of this.newsIds.data) {
-              console.log(id);
-              if (count++ > 9) return list;
-              var url = "https://hacker-news.firebaseio.com/v0/item/" + id + ".json";
-              axios
-              .get(url)
-              .then(response => (list.push(response)));
-          }
-      }
-  },
   methods: {
-
+    getNewsList() {
+      var vm = this;
+      var count = 0;
+      if (vm.newsIds.length == 0) return;
+      for (var id of vm.newsIds.data) {
+        console.log(id);
+        if (count++ > 9) return;
+        var url = "https://hacker-news.firebaseio.com/v0/item/" + id + ".json";
+        axios
+        .get(url)
+        .then(response => (vm.newsList.push(response)));
+      }
+    },
+    compareArrays(arr1, arr2) {
+      if (arr1.length != arr2.length) return false;
+      for (var item of arr1) {
+        var index = arr2.indexOf(item);
+        if (index < 0) return false;
+      }
+      return true;
+    }
+  },
+  watch: {
+    newsIds(newIdList, oldIdList) {
+      if (this.compareArrays(newIdList, oldIdList)) return;
+      this.newsList = [];
+      this.getNewsList();
+    }
   }
-//   watch: {
-//       newsIds(idList, oldIdList) {
-//           for (var id of idList.data) {
-//               console.log(id);
-//               if (this.newsList.length > 10) return;
-//               var url = "https://hacker-news.firebaseio.com/v0/item/" + id + ".json";
-//               axios
-//               .get(url)
-//               .then(response => (this.newsList.push(response)));
-//           }
-//       }
-//   }
 };
+
 </script>
