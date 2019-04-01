@@ -4,7 +4,7 @@
         <ul>
             <li v-for="news in newsList" :key="news.id">
                 <span>
-                    <a :href="news.data.url">{{ news.data.title }}</a>
+                    <a :href="news.data.url" target="_blank">{{ news.data.title }}</a>
                 </span>
             </li>
         </ul>
