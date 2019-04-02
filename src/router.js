@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Top from "./views/Top.vue";
+import Ask from "./views/Ask.vue";
 import LastestNews from "./views/LatestNews.vue";
 
 Vue.use(Router);
@@ -14,8 +15,8 @@ export default new Router({
             component: Top
         },
         {
-            path: "/latest",
-            component: LastestNews
+            path: "/ask",
+            component: Ask
         },
         {
             path: "/about",

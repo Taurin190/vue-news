@@ -9,7 +9,7 @@
               <router-link to="/"  class="nav-link">TOP</router-link>
             </li>
             <li class="nav-item ">
-              <router-link to="/about" class="nav-link">ASK</router-link>
+              <router-link to="/ask" class="nav-link">ASK</router-link>
             </li>
             <li class="nav-item ">
               <router-link to="/lastest"  class="nav-link">UPDATE</router-link>
